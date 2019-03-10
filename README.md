@@ -29,7 +29,7 @@ These are all the options with their default value (`*` means it is mandatory):
 ## Use docker image
 
 ```
-docker run -ti -e PASSWORD=abcdefg1234 -e DOMAIN=mydomain.xyz namecheapddns host1 host2 host3
+docker run -ti -e PASSWORD=abcdefg1234 -e DOMAIN=mydomain.xyz josefuentes/namecheap-ddns-refresher host1 host2 host3
 ```
 
 ## Use script
