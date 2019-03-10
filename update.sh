@@ -42,7 +42,7 @@ while true; do
         ${cmd} &> /tmp/ddns.log
         retval=$?
 
-        grep "No Records updated." /tmp/ddns.log &> /dev/null
+        grep "No Records updated." /tmp/ddns.log > /dev/null
         foundrecord=$?
         set -e
 
