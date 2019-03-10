@@ -43,19 +43,20 @@ while true; do
         retval=$?
 
         grep "No Records updated." /tmp/ddns.log > /dev/null
-        foundrecord=$?
+        norecord=$?
         set -e
+        echo "NORECORD: $norecord"
 
-        if [ ${retval} -eq 0 ] && [ ${foundrecord} -eq 0 ]; then
+        if [ ${retval} -eq 0 ] && [ ${norecord} -eq 1 ]; then
             echo -e " \033[32mOK\e[0m  -> ${host}.${DOMAIN} ${ip}"
         else
             echo -e " \033[31mFAIL\e[0m -> ${host}.${DOMAIN} ${ip}"
-            if [ ${foundrecord} -ne 0 ]; then
+            if [ ${norecord} -ne 0 ]; then
                 echo -e "     \033[33mRecord '${host}' not found\e[0m"
             fi
         fi
 
-        if ${VERBOSE} || ${SHOW_RESPONSE} || [ ${retval} -ne 0 ]; then
+        if ${VERBOSE} || ${SHOW_RESPONSE} || [ ${retval} -ne 0 ] || [ ${norecord} -ne 1 ]; then
             echo -e "     \033[94mexecuted:\e[0m ${cmd}"
             echo -e "     \033[94mreturned:\e[0m ${retval}"
             echo -e "     \033[94mlog:\e[0m"
