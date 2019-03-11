@@ -45,7 +45,6 @@ while true; do
         grep "No Records updated." /tmp/ddns.log > /dev/null
         norecord=$?
         set -e
-        echo "NORECORD: $norecord"
 
         if [ ${retval} -eq 0 ] && [ ${norecord} -eq 1 ]; then
             echo -e " \033[32mOK\e[0m  -> ${host}.${DOMAIN} ${ip}"
