@@ -26,7 +26,7 @@ if [ ${#HOSTS[@]} -eq 0 ]; then
 fi
 
 while true; do
-    ip="$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}')"
+    ip="$(curl -s https://ipinfo.io/ip)"
 
     echo "Updating DDNS registries for ${HOSTS[*]}:"
     for host in ${HOSTS[@]}; do
